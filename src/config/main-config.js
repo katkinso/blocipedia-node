@@ -7,6 +7,8 @@ const session = require("express-session");
 const flash = require("express-flash");
 const logger = require('morgan');
 const passportConfig = require("./passport-config");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 module.exports = {
