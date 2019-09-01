@@ -18,8 +18,7 @@ module.exports = {
 
         userQueries.createUser(newUser, (err, user) => {
             if (err) {
-                req.flash("error", "This hard coded message appears as undefined in flash when dupe user!!!");
-                console.log("err= ", err)
+                req.flash("error", err);
                 res.redirect("/users/signup");
             } else {
                 passport.authenticate("local")(req, res, () => {

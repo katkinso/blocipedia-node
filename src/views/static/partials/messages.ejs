@@ -11,10 +11,10 @@
 
         Validation errors:
         <ul>
-    
+          
     <!-- #3 -->
       <% messages.error.forEach((err) => { %>
-            <li><%= `${err.param} ${err.msg}` %></li>
+            <li><%= `${err.param}: ${err.msg}` %></li>
           <% }) %>
         </ul>
         <% } else { %>

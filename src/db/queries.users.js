@@ -16,17 +16,11 @@ module.exports = {
       callback(null, user);
     })
     .catch((err) => {
-        // console.log("XXXX= ", err.errors[0].message);
-
-        let errorMessages = [];
+        let messages = [];
         err.errors.map(m => {
-            errorMessages.push(m.message);
+            messages.push({'msg':m.message, 'param': m.path});
         })
-        
-        errorMessages.push("another error");
-        console.log("XXXX2= ", errorMessages);
-
-      callback(errorMessages);
+      callback(messages);
     })
   }
 
