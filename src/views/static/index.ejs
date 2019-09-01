@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Head -->
+    <% include ./partials/head.ejs %>
+    <!-- Head -->
 
-<!-- #1 -->
-    <title><%= title %></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-
-<!-- #2 -->
-    <!-- <link rel="stylesheet" href="/css/application.css"> -->
   </head>
   <body>
-
+     
+     <!-- Navigation -->
+     <% include ./partials/nav.ejs %>
+     <!-- Navigation -->
 
       <!-- Page Content -->
       <main class="container">
@@ -20,17 +18,28 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
           <h1 class="display-3">Blocipedia</h1>
-          <%= title %>
+          <h2 class="display-8">Blocipedia: Social, Markdown Wikis</h2>
         </header>
+
+        <div class="container mx-auto bg-light border border-info rounded"><br>
+
+            <div class="mx-auto" style="width: 600px;">
+
+            <h3>Create and share markdown wikis</h3>
+            <form action="/users/signup" method="post">
+              <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+            <br>
+          </div>
+          </div>
 
       </main>
       <!-- /.container -->
 
-      <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-      </script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <!-- Script -->
+       <% include ./partials/script.ejs %>
+      <!-- Script -->
+
+      
     </body>
 </html>
