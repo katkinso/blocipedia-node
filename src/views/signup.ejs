@@ -13,28 +13,34 @@
      <% include static/partials/nav.ejs %>
      <!-- Navigation -->
 
+      
+
       <!-- Page Content -->
       <main class="container">
+
+        <!-- messages -->
+        <% include static/partials/messages.ejs %>
+        <!-- messages -->
 
           <h2>Welcome to Blocipedia</h2>
           <div class="row">
             <div class="col-md-8">
-              <form method="POST" action="/user/signup">
+              <form method="POST" action="/users/create">
                 <div class="form-group">
                   <label>Name:</label>
-                  <input type="text" name="name" placeholder="Enter Name" class="form-control"/>
+                  <input type="text" name="name" placeholder="Enter Name" class="form-control" value="kate"/>
                 </div>
                 <div class="form-group">
                   <label>Email:</label>
-                  <input type="email" name="email" placeholder="Enter Email" class="form-control"/>
+                  <input type="email" name="email" placeholder="Enter Email" class="form-control" value="katyratkinson@yahoo.com"/>
                 </div>
                 <div class="form-group">
                   <label>Password:</label>
-                  <input type="password" name="password" placeholder="Enter Password" class="form-control"/>
+                  <input type="password" name="password" placeholder="Enter Password" class="form-control" value="Password1!"/>
                 </div>
                 <div class="form-group">
                   <label>Password:</label>
-                  <input type="password" name="password_conf" placeholder="Enter Password confirmation" class="form-control"/>
+                  <input type="password" name="password_conf" placeholder="Enter Password confirmation" class="form-control"  value="Password1!"/>
                 </div><br/>
                 <input type="submit" value="Sign Up" class="btn btn-primary"/>
               </form>

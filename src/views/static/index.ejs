@@ -15,26 +15,30 @@
       <!-- Page Content -->
       <main class="container">
 
+        <!-- messages -->
+        <% include ./partials/messages.ejs %>
+        <!-- messages -->
+
         <!-- Jumbotron Header -->
-        <header class="jumbotron my-4">
+        <header class="jumbotron my-4  bg-light border rounded">
           <h1 class="display-3">Blocipedia</h1>
           <h2 class="display-8">Blocipedia: Social, Markdown Wikis</h2>
         </header>
+        <!-- Jumbotron Header -->
 
-        <div class="container mx-auto bg-light border border-info rounded"><br>
-
-            <div class="mx-auto" style="width: 600px;">
+        <!-- /.container -->
+        <div class="container mx-auto bg-light border rounded"><br>
 
             <h3>Create and share markdown wikis</h3>
             <form action="/users/signup" method="post">
-              <button type="submit" class="btn btn-primary">Sign up</button>
+              <button type="submit" class="btn btn-primary btn-lg">SIGN UP</button>
             </form>
             <br>
           </div>
-          </div>
-
+        <!-- /.container -->
+          
       </main>
-      <!-- /.container -->
+      
 
       <!-- Script -->
        <% include ./partials/script.ejs %>
