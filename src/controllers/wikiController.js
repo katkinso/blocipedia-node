@@ -43,7 +43,6 @@ module.exports = {
     },
     update(req, res, next) {
 
-        console.log("req.body=== ", req.body) //why is this NULL?
         wikiQueries.updateWiki(req.params.id, req.body, (err, wiki) => {
             
           if (err || wiki == null) {
@@ -52,5 +51,35 @@ module.exports = {
             res.redirect(`/wikis/${req.params.id}`);
           }
         });
-    }
+    },
+    create(userId, newWiki, callback) {
+        return Wiki.create({
+          title: newWiki.title,
+          body: newWiki.body,
+          userId: userId
+        })
+          .then((wiki) => {
+            callback(null, wiki);
+          })
+          .catch((err) => {
+            callback(err);
+          })
+     },
+     new(req, res, next) {
+          res.render("wikis/new");
+     },
+     create(req, res, next) {
+          let newWiki = {
+            title: req.body.title,
+            body: req.body.body,
+            userId: req.user.id
+          };
+          wikiQueries.addWiki(newWiki, (err, wiki) => {
+            if (err) {
+              res.status(500).redirect("wikis/new");
+            } else {
+              res.status(303).redirect(`/wikis/${wiki.id}`);
+            }
+          });
+      },
 }//END

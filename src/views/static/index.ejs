@@ -23,16 +23,21 @@
         <header class="jumbotron my-4  bg-light border rounded">
           <h1 class="display-3">Blocipedia</h1>
           <h2 class="display-8">Blocipedia: Social, Markdown Wikis</h2>
+
+          <br>
+          <a class="btn btn-primary btn-lg mr-3" href="/wikis" role="button">View Wikis</a>
         </header>
         <!-- Jumbotron Header -->
 
         <!-- /.container -->
         <div class="container mx-auto bg-light border rounded"><br>
 
-            <h3>Create and share markdown wikis</h3>
-            <form action="/users/signup" method="post">
-              <button type="submit" class="btn btn-primary btn-lg">SIGN UP</button>
-            </form>
+            <h3 class="text-center">Create and share markdown wikis</h3>
+
+            <% if(!currentUser) { %>
+              <p class="text-center"> <a class="btn btn-primary btn-lg mr-3" href="/users/signup" role="button">Sign up</a></p>
+            <% } %>
+
             <br>
           </div>
         <!-- /.container -->

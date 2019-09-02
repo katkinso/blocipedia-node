@@ -19,22 +19,20 @@
         <!-- messages -->
 
         <div class="row">
-            <div class="col-md-12"><h2><a href="/wikis">Wikis</a> > Edit</h2></div>
+            <div class="col-md-12"><h2><a href="/wikis">Wikis</a> > New</h2></div>
         </div>
         <hr class="p-3">
 
-        
-
-          <form method="POST" action="/wikis/<%= wiki.id %>/update">
+          <form method="POST" action="/wikis/create">
             
               <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control" value="<%= wiki.title %>"/>
+                <input type="text" name="title" class="form-control"/>
               </div>
               
               <div class="form-group">
                 <label>Body</label>
-                <textarea class="form-control" name="body" rows="12"><%= wiki.body %></textarea>
+                <textarea class="form-control" name="body" rows="12"></textarea>
               </div>
 
               <input type="submit" value="Save" class="btn btn-primary btn-lg float-right"/>

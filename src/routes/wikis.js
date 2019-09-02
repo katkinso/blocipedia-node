@@ -5,15 +5,16 @@ const wikiController = require("../controllers/wikiController");
 const helper = require("../auth/helpers");
 
 
+router.get("/wikis/new", helper.ensureAuthenticated, wikiController.new);
+router.post("/wikis/create", helper.ensureAuthenticated, wikiController.create);
+
 router.get("/wikis", wikiController.index);
 router.get("/wikis/:id", wikiController.view);
 
-//KA - remember auth
-// router.get("/wikis/:id/delete", helper.ensureAuthenticated, wikiController.delete);
-// router.get("/wikis/:id/edit", helper.ensureAuthenticated, wikiController.edit);
+router.get("/wikis/:id/delete", helper.ensureAuthenticated, wikiController.delete);
 
-router.get("/wikis/:id/delete", wikiController.delete);
-router.get("/wikis/:id/edit", wikiController.edit);
-router.post("/wikis/:id/update", wikiController.update);
+router.get("/wikis/:id/edit", helper.ensureAuthenticated, wikiController.edit);
+router.post("/wikis/:id/update", helper.ensureAuthenticated, wikiController.update);
+
 
 module.exports = router;
