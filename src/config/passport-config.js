@@ -24,10 +24,12 @@ module.exports = {
       })
     }));
 
+    //serializeUser takes the authenticated user's ID and stores it in the session
     passport.serializeUser((user, callback) => {
       callback(null, user.id);
     });
 
+    //deserializeUser takes the ID stored in the session and returns the user associated with it
     passport.deserializeUser((id, callback) => {
       User.findByPk(id)
       .then((user) => {

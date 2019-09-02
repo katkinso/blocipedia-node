@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Head -->
+    <% include static/partials/head.ejs %>
+    <!-- Head -->
+    
+
+  </head>
+  <body>
+     
+     <!-- Navigation -->
+     <% include static/partials/nav.ejs %>
+     <!-- Navigation -->
+
+      
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <!-- messages -->
+        <% include static/partials/messages.ejs %>
+        <!-- messages -->
+
+          <h2>User Profile</h2>
+          <hr>
+
+          <p>Name: <%= currentUser.name %></p>
+          <p>Email: <%= currentUser.email %></p>
+          
+
+      </main>
+      <!-- /.container -->
+
+      <!-- Script -->
+       <% include static/partials/script.ejs %>
+      <!-- Script -->
+
+      
+    </body>
+</html>
+

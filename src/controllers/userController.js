@@ -6,8 +6,6 @@ const sgMail = require('@sendgrid/mail');
 module.exports = {
     signup(req, res, next) {
         res.render("signup");
-        // res.send("hello");
-        // res.render("signup", {title: "Blocipedia"});
     },
     create(req, res, next) {
 
@@ -41,22 +39,57 @@ module.exports = {
                 })
             }
         });
-    }
-    //,
-    // testEmail(req, res, next) {
+    },
+    signin(req, res, next) {
+        res.render("signin");
+    },
+    authenticate(req, res, next) {
+        //Check syntax with Alvaro
+        passport.authenticate('local', function(err, user, info) {
+            if (err) { return next(err); }
+            
+            if (!user) { 
+                req.flash("notice", "Sign in failed. Please try again.")
+                res.redirect("/users/signin");
+            }
 
-    //     console.log("testEmail: got here")
-    //     const msg = {
-    //         to: 'katyratkinson@yahoo.com',
-    //         from: 'test@example.com',
-    //         subject: 'Subject: email test in user controller',
-    //         text: 'Text: body of the email',
-    //         html: '<strong>This is HTML!!</strong>',
-    //       };
-    //       sgMail.send(msg);
-    //       req.flash("notice", "Email sent");
-    //       res.redirect("/users/signup");
-    // }
+            req.login(user, function(err) {
+              if (err) { return next(err); }
+              req.flash("notice", "You've successfully signed in!");
+              res.redirect("/");
+            });
+          })(req, res, next);
+
+
+        //DOES NOT WORK - FAILURE IS NEVER CALLED ---- Check with Alvaro
+        //   passport.authenticate("local")(req, res, function () {
+        //     if (!req.user) {
+        //         req.flash("notice", "Sign in failed. Please try again.")
+        //         res.redirect("/users/sign_in");
+        //     } else {
+        //         req.flash("notice", "You've successfully signed in!");
+        //         res.redirect("/");
+        //     }
+        // })
+
+    
+        
+    },
+    signout(req, res, next){
+        req.logout();
+        req.flash("notice", "You've successfully signed out!");
+        res.redirect("/");
+    },
+    profile(req, res, next) {
+        res.render("profile");
+    },
 }
+
+
+
+
+
+// res.send("hello");
+// res.render("signup", {title: "Blocipedia"});
 
 
