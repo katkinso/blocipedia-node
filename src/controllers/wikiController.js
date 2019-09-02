@@ -1,4 +1,5 @@
 const wikiQueries = require("../db/queries.wikis.js");
+const Authorizer = require("../policies/application");
 
 module.exports = {
     index(req, res, next){
@@ -15,7 +16,6 @@ module.exports = {
 
         wikiQueries.deleteWiki(req, (err, wiki) => {
           if (err) {
-            console.log(err)
             res.redirect(404, `/wikis/${req.params.id}`)
           } else {
             req.flash("notice", "Wiki entry deleted");
@@ -33,11 +33,20 @@ module.exports = {
         });
     },
     edit(req, res, next) {
+
+        const authorized = new Authorizer(req.user).edit();
+
         wikiQueries.getWiki(req.params.id, (err, wiki) => {
           if (err || wiki == null) {
             res.redirect(404, "/");
           } else {    
-            res.render("wikis/edit", { wiki });
+            
+            if (authorized){
+                res.render("wikis/edit", { wiki });
+            } else {
+                req.flash("You're not authorized to do that.")
+                res.redirect(`/wikis/${req.params.id}`)
+            }
           }
         });
     },
