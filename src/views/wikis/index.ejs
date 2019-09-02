@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Head -->
+    <% include ../static/partials/head.ejs %>
+    <!-- Head -->
+  </head>
+  <body>
+     
+     <!-- Navigation -->
+     <% include ../static/partials/nav.ejs %>
+     <!-- Navigation -->
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <!-- messages -->
+        <% include ../static/partials/messages.ejs %>
+        <!-- messages -->
+
+          <h2>Wikis</h2>
+
+          <br><br>
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Wiki</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% wikis.map((wiki) => {  %>
+                <tr>
+                    <td><a href="/wikis/<%= wiki.id %>"><%= wiki.title %></a></td>
+                    <td style="width:10%"><a href="/wikis/<%= wiki.id %>/edit">Edit</a></td>
+                    <td style="width:10%"><a href="/wikis/<%= wiki.id %>/delete">Delete</a></td>
+                </tr>
+            <% }) %>
+            </tbody>
+          </table>
+          
+          <div class="row">
+            <div class="col-md-8">
+                <form method="POST" action="/wikis/create">
+                <input type="submit" value="+ New Wiki" class="btn btn-primary btn-lg"/>
+                </form>
+            </div>
+          </div>
+            
+      </main>
+      <!-- /.container -->
+
+      <!-- Script -->
+       <% include ../static/partials/script.ejs %>
+      <!-- Script -->
+
+      
+    </body>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Head -->
+    <% include ./partials/head.ejs %>
+    <!-- Head -->
+
+  </head>
+  <body>
+     
+     <!-- Navigation -->
+     <% include ./partials/nav.ejs %>
+     <!-- Navigation -->
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <!-- messages -->
+        <% include ./partials/messages.ejs %>
+        <!-- messages -->
+
+        <!-- Jumbotron Header -->
+        <!-- <header class="jumbotron my-4  bg-white border rounded"> -->
+          
+          <div style="width:200px mx-auto">
+                <h1 class="display-4 text-center">Sorry, I couldn't find that page</h1>
+                <img src="/images/404_feathers.png" alt="Page not found" width="30%" class="rounded mx-auto d-block"> 
+                <br>
+                <div class="alert alert-primary" role="alert">
+                    Head back to the <a href="/" class="alert-link">home page</a>
+            </div>
+          </div>
+          
+        <!-- </header> -->
+        <!-- Jumbotron Header -->
+
+  
+          
+      </main>
+      
+
+      <!-- Script -->
+       <% include ./partials/script.ejs %>
+      <!-- Script -->
+
+      
+    </body>
+</html>

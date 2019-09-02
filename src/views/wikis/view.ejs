@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Head -->
+    <% include ../static/partials/head.ejs %>
+    <!-- Head -->
+  </head>
+  <body>
+     
+     <!-- Navigation -->
+     <% include ../static/partials/nav.ejs %>
+     <!-- Navigation -->
+
+      <!-- Page Content -->
+      <main class="container">
+
+        <!-- messages -->
+        <% include ../static/partials/messages.ejs %>
+        <!-- messages -->
+
+        <div class="row">
+            <div class="col-md-8"><h2><a href="/wikis">Wikis</a> > <%= wiki.title %></h2></div>
+            <div class="col-md-4">
+                <a class="btn btn-primary btn-lg float-right" href="/wikis/<%= wiki.id %>/edit" role="button">Edit</a>
+            </div>
+        </div>
+
+          <hr class="p-3">
+          <p><%= wiki.body %></p>
+
+          <hr class="p-3">
+
+          
+            
+      </main>
+      <!-- /.container -->
+
+      <!-- Script -->
+       <% include ../static/partials/script.ejs %>
+      <!-- Script -->
+
+      
+    </body>
+</html>
+
