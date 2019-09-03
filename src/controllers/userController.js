@@ -58,7 +58,7 @@ module.exports = {
               req.flash("notice", "You've successfully signed in!");
               res.redirect("/");
             });
-          })(req, res, next);
+          })(req, res, next); // <-- explain syntax
 
 
         //DOES NOT WORK - FAILURE IS NEVER CALLED ---- Check with Alvaro
