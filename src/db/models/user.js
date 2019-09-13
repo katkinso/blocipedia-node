@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'standard'
+    },
+    stripeId: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   }, {});
   User.associate = function(models) {

@@ -17,6 +17,10 @@ module.exports = class ApplicationPolicy {
         return this.user && this.user.role == "premium";
      }
 
+     _isStandard() {
+      return this.user && this.user.role == "standard";
+   }
+
      new() {
        return this.user != null;
      }

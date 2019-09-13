@@ -26,6 +26,21 @@
 
           <br>
           <a class="btn btn-primary btn-lg mr-3" href="/wikis" role="button">View Wikis</a>
+
+
+          <!-- Stripe -->
+          <% if(currentUser && currentUser.role === 'standard') { %>
+            <% include ./partials/stripe.ejs %>
+          <% } %>
+          <!-- Stripe -->
+          
+          <% if(currentUser && currentUser.role === 'premium') { %>
+            <br> <br>
+            <form method="POST" action="/users/downgrade">
+              <input type="submit" value="Downgrade Account" class="btn btn-primary  btn-lg mr-3"/>
+            </form>
+          <% } %>
+          
         </header>
         <!-- Jumbotron Header -->
 
@@ -39,6 +54,8 @@
             <% } %>
 
             <br>
+
+            
           </div>
         <!-- /.container -->
           

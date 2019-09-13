@@ -22,6 +22,25 @@ module.exports = {
         })
       callback(messages);
     })
+  },
+  updateUser(id, updatedUser, callback){
+
+    return User.findByPk(id)
+    .then((user) => {
+      if(!user){
+        return callback("User not found");
+      }
+
+      user.update(updatedUser, {
+        fields: Object.keys(updatedUser)
+      })
+      .then(() => {
+        callback(null, user);
+      })
+      .catch((err) => {
+        callback(err);
+      });
+    });
   }
 
 }

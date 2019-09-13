@@ -5,6 +5,7 @@ const sgMail = require('@sendgrid/mail');
 
 module.exports = {
     signup(req, res, next) {
+        console.log("stripeApiKeyx", req.stripeApiKeyx)
         res.render("signup");
     },
     create(req, res, next) {
@@ -60,19 +61,6 @@ module.exports = {
             });
           })(req, res, next); // <-- explain syntax
 
-
-        //DOES NOT WORK - FAILURE IS NEVER CALLED ---- Check with Alvaro
-        //   passport.authenticate("local")(req, res, function () {
-        //     if (!req.user) {
-        //         req.flash("notice", "Sign in failed. Please try again.")
-        //         res.redirect("/users/sign_in");
-        //     } else {
-        //         req.flash("notice", "You've successfully signed in!");
-        //         res.redirect("/");
-        //     }
-        // })
-
-    
         
     },
     signout(req, res, next){
