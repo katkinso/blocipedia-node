@@ -14,6 +14,7 @@ router.get("/wikis/:id", wikiController.view);
 router.get("/wikis/:id/delete", helper.ensureAuthenticated, wikiController.delete);
 
 router.get("/wikis/:id/edit", helper.ensureAuthenticated, wikiController.edit);
+
 router.post("/wikis/:id/update", helper.ensureAuthenticated, wikiController.update);
 
 

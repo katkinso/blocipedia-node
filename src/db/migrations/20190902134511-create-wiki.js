@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       body: {
-        type: Sequelize.BLOB,
+        type: Sequelize.TEXT,
         allowNull: true
       },
       private: {

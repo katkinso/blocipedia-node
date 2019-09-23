@@ -41,21 +41,40 @@
               
               <div class="form-group">
                 <label>Body</label>
-                <textarea class="form-control" name="body" rows="12"><%= wiki.body %></textarea>
+                <textarea placeholder="Type the body of your wiki here..." class="form-control" id="body" name="body" oninput="this.editor.update()" rows="6" cols="60"><%= wiki.body %></textarea>
+                <div class="clearfix">
+                  <div class="text-muted float-right">**bold** _italic_ `code` >quote • - bullet list</div>
+                </div>
               </div>
 
-              <input type="submit" value="Save" class="btn btn-primary btn-lg float-right"/>
+              
+
+            <b>Preview</b>
+            <hr/>
+            <div id="body-preview"><%- wiki.bodyFormatted %></div>
+
+            <input type="submit" value="Save" class="btn btn-primary btn-lg float-right"/>
               
               <a class="btn btn-secondary btn-lg float-right mr-3" href="/wikis" role="button">Cancel</a>
             </form>
-
-        
       </main>
       <!-- /.container -->
 
       <!-- Script -->
        <% include ../static/partials/script.ejs %>
       <!-- Script -->
+
+      <script>
+          function Editor(input, preview) {
+            this.update = function () {
+              preview.innerHTML = markdown.toHTML(input.value);
+            };
+            input.editor = this;
+            this.update();
+          }
+          var $ = function (id) { return document.getElementById(id); };
+          new Editor($("body"), $("body-preview"));
+        </script> 
 
       
     </body>
