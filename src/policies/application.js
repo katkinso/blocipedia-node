@@ -14,6 +14,7 @@ module.exports = class ApplicationPolicy {
      }
 
      _isPremium() {
+       console.log(this.user.role)
         return this.user && this.user.role == "premium";
      }
 
@@ -44,4 +45,8 @@ module.exports = class ApplicationPolicy {
      destroy() {
        return this.update();
      }
+
+     setPrivate() {
+      return this._isPremium();
+    }
    }

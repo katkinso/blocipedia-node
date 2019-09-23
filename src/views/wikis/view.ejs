@@ -19,7 +19,9 @@
         <!-- messages -->
 
         <div class="row">
-            <div class="col-md-10"><h2><a href="/wikis">Wikis</a> > <%= wiki.title %></h2></div>
+            <div class="col-md-10">
+                <span class="text-muted"><%= wiki.private ? 'private wiki' : ''%></span><br>
+              <h2><a href="/wikis">Wikis</a> > <%= wiki.title %> </h2> </div>
             <div class="col-md-1">
                 <a class="btn btn-danger btn-lg float-right" href="/wikis/<%= wiki.id %>/delete" role="button">Delete</a>
             </div>

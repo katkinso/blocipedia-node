@@ -32,7 +32,7 @@
             <tbody>
             <% wikis.map((wiki) => {  %>
                 <tr>
-                    <td><a href="/wikis/<%= wiki.id %>"><%= wiki.title %></a></td>
+                    <td><a href="/wikis/<%= wiki.id %>"><%= wiki.title %></a><br> <span class="text-muted"><%= wiki.private ? 'private' : ''%></span></td>
                     <td style="width:10%"><a href="/wikis/<%= wiki.id %>/edit">Edit</a></td>
                     <td style="width:10%"><a href="/wikis/<%= wiki.id %>/delete">Delete</a></td>
                 </tr>

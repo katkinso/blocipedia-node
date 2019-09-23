@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 const userQueries = require("../db/queries.users.js");
+const wikiQueries = require("../db/queries.wikis.js");
+
 const stripeApiKey = process.env.STRIPE_API_KEY;
 
 
@@ -8,6 +10,7 @@ module.exports = {
         
         const session_id = req.param('session_id');
         const data = { headers: { 'Authorization': 'Bearer ' + stripeApiKey }}
+        const referer = req.header('Referer')
 
         if (req.user){
             fetch('https://api.stripe.com/v1/checkout/sessions/' + session_id, data)
@@ -24,10 +27,12 @@ module.exports = {
                         if(err || user == null){
                             res.redirect(404, `/`);
                         } else {
-                            req.flash("notice", "Updated account to premium");
+                            req.flash("notice", "Upgraded account to premium");
                             res.redirect(`/`);
                         }
                     });   
+                }else{
+                    res.redirect(`/`);
                 }
             }).catch(err => console.error(err));
         }
@@ -35,30 +40,9 @@ module.exports = {
     canceled(req, res, next) {
         res.render("signup");
     },
-    // webhook(req, res, next) {
-    //     const sig = req.headers['stripe-signature'];
-    //     let event;
-
-    //     const endpointSecret = 'whsec_atnNE4VWMJ2sdUQDibLZCFk02SyCmmFb';
-
-    //     try {
-    //         console.log("endpointSecret", endpointSecret)
-    //         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-    //     } catch (err) {
-    //         return response.status(400).send(`Webhook Error: ${err.message}`);
-    //     }
-
-    //     // Handle the checkout.session.completed event
-    //     if (event.type === 'checkout.session.completed') {
-    //         const session = event.data.object;
-    //     }
-
-    //     // Return a response to acknowledge receipt of the event
-    //     res.json({received: true});
-        
-    // },
     downgrade(req, res, next){
 
+        console.log(req.user.id)
 
         userQueries.updateUser(req.user.id, {role: 'standard'}, (err, user) => {
             if(err || user == null){
@@ -73,18 +57,23 @@ module.exports = {
                 fetch('https://api.stripe.com/v1/customers/' + user.stripeId, data)
                 .then(res => res.json())
                 .then(json => {
-                    console.log("user.stripeId= ", user.stripeId)
 
                     if (json.deleted === true){
-                        req.flash("notice", "Downgraded account to standard");
-                        res.redirect(`/`);
+                        
+                        wikiQueries.updateUserWikisToPublic(req.user.id, (err, user) => {
+                            req.flash("notice", "Downgraded account to standard");
+                            res.redirect(req.header('Referer'));
+                        })
+
+
                     }else{
                         req.flash("notice", res);
                         res.redirect(`/`);
                     }
-                }).catch(err => console.error(err));
+                })
                 
-                
+                .catch(err => console.error(err));
+ 
             }
         });  
         

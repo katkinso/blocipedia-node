@@ -7,7 +7,6 @@ const helper = require("../auth/helpers");
 
 router.get("/stripe/success", stripeController.success);
 router.post("/users/downgrade", stripeController.downgrade);
-// router.post("/webhook", stripeController.webhook);
 router.get("/stripe/canceled", stripeController.canceled);
 
 module.exports = router;
