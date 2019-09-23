@@ -11,9 +11,13 @@
      <!-- Navigation -->
      <% include ./partials/nav.ejs %>
      <!-- Navigation -->
+     
 
       <!-- Page Content -->
       <main class="container">
+
+          
+          
 
         <!-- messages -->
         <% include ./partials/messages.ejs %>
@@ -21,6 +25,12 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4  bg-light border rounded">
+            <% if(currentUser && currentUser.role === 'premium') { %>
+              <!-- downgrade -->
+              <% include ../modals/downgrade-confirm.ejs %>
+              <!-- downgrade -->
+              <% } %>
+              
           <h1 class="display-3">Blocipedia</h1>
           <h2 class="display-8">Blocipedia: Social, Markdown Wikis</h2>
 
@@ -34,12 +44,11 @@
           <% } %>
           <!-- Stripe -->
           
-          <% if(currentUser && currentUser.role === 'premium') { %>
-            <br> <br>
-            <form method="POST" action="/users/downgrade">
-              <input type="submit" value="Downgrade Account" class="btn btn-primary  btn-lg mr-3"/>
-            </form>
-          <% } %>
+          
+
+          <a class="btn btn-primary btn-lg" href="/wikis/new" role="button">+ New Wiki</a>
+
+          
           
         </header>
         <!-- Jumbotron Header -->

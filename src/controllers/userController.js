@@ -5,7 +5,6 @@ const sgMail = require('@sendgrid/mail');
 
 module.exports = {
     signup(req, res, next) {
-        console.log("stripeApiKeyx", req.stripeApiKeyx)
         res.render("signup");
     },
     create(req, res, next) {

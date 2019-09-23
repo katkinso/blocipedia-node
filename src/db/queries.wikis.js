@@ -1,16 +1,15 @@
 const Wiki = require("./models").Wiki;
+const Authorizer = require("../policies/application");
 
 module.exports = {
-  getAllWikis(callback) {
-    return Wiki.findAll({
-      order: [
-        ['title', 'ASC']
-      ]
-      })
+  getAllWikis(authorized, callback) {
+  
+    Wiki.scope({method: ["getWikis", authorized]}).findAll()
       .then((wikis) => {
         callback(null, wikis);
       })
       .catch((err) => {
+        console.log(err)
         callback(err);
       })
   },
@@ -37,6 +36,7 @@ module.exports = {
       })
   },
   updateWiki(id, updatedWiki, callback){
+
     return Wiki.findByPk(id)
     .then((wiki) => {
       if(!wiki){
@@ -53,11 +53,31 @@ module.exports = {
       });
     });
   },
+  updateUserWikisToPublic(userId, callback){
+
+      Wiki.update(
+        {
+          private: false,
+        }, {
+          where: {
+            userId: userId
+          }
+        }
+      )
+      .then(() => {
+        callback(null, wiki);
+      })
+      .catch((err) => {
+        callback(err);
+      });
+  },
   addWiki(newWiki, callback) {
+
     return Wiki.create({
       title: newWiki.title,
       body: newWiki.body,
-      userId: newWiki.userId
+      userId: newWiki.userId,
+      private: newWiki.private
      })
       .then((wiki) => {
         callback(null, wiki);
@@ -65,6 +85,6 @@ module.exports = {
       .catch((err) => {
         callback(err);
       })
-  },
+  }
 
 }//End

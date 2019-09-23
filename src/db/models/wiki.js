@@ -1,3 +1,6 @@
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Wiki = sequelize.define('Wiki', {
@@ -26,5 +29,26 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE"
     });
   };
+
+
+  Wiki.addScope("getWikis", (authorized) => {
+
+        let query = '';
+
+        if (authorized){
+          query = {
+            order: [["createdAt", "DESC"]]
+          }
+        }else{
+          query = {
+            where: { private: false},
+            order: [["createdAt", "DESC"]]
+          }
+        }
+
+        return query;
+   });
+
+
   return Wiki;
 };

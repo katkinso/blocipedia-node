@@ -28,6 +28,8 @@
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
+      // successUrl: 'http://localhost:3000/stripe/success?session_id={CHECKOUT_SESSION_ID}',
+      // cancelUrl: 'http://localhost:3000/stripe/canceled',
       successUrl: 'https://katkinso-blocipedia.herokuapp.com/stripe/success?session_id={CHECKOUT_SESSION_ID}',
       cancelUrl: 'https://katkinso-blocipedia.herokuapp.com/stripe/canceled',
     })
